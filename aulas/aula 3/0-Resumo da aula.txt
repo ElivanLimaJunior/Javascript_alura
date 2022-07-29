@@ -1,0 +1,11 @@
+Neste capítulo aprendemos a lidar uma coleção de elementos do HTML e vimos:
+
+1-Como selecionar diversos elementos com a função querySelectorAll()
+
+2- Relembramos um método clássico de iteração com o for
+
+3- Vimos como manipular estilos com a propriedade .style
+
+4- Vimos que devemos utilizar camelCase quando queremos modificar uma propriedade que tenha duas palavras, como a background-color
+
+5- A boa prática de não alterar o estilo diretamente no Javascript e sim modificar as classes dos elementos com a propriedade .classList

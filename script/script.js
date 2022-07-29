@@ -1,33 +1,41 @@
-var paciente = document.querySelector("#primeiro-paciente");
+var pacientes = document.querySelectorAll(".paciente");
 
-var tdAltura = paciente.querySelector(".info-altura");
-var tdPeso = paciente.querySelector(".info-peso");
-var tdImc = paciente.querySelector(".info-imc");
+console.log(pacientes)
 
+for(var i = 0; i < pacientes.length; i++) {
+    
+    var paciente = pacientes[i] 
 
-var altura = tdAltura.textContent;
-var peso = tdPeso.textContent;
+    var tdAltura = paciente.querySelector(".info-altura");
+    var tdPeso = paciente.querySelector(".info-peso");
 
-var alturaEhValida = true;
-var pesoEhValido = true;
+    var tdImc = paciente.querySelector(".info-imc");
 
-if (peso <= 0 || peso > 1000) {
-    console.log("Peso inválido!");
-    tdPeso.textContent = "Peso inválido!";
-    pesoEhValido = false;
+    var altura = tdAltura.textContent;
+    var peso = tdPeso.textContent;
 
-}
+    var alturaEhValida = true;
+    var pesoEhValido = true;
 
-if (altura <= 0 || altura >= 3) {
-    console.log("Altura inválida!");
-    tdAltura.textContent = "Altura inválida!";
-    alturaEhValida = false;
-}
+    if (peso <= 0 || peso > 1000) {
+        console.log("Peso inválido!");
+        tdPeso.textContent = "Peso inválido!";
+        pesoEhValido = false;
+        paciente.classList.add("paciente-invalido")
+    }
 
-if (alturaEhValida && pesoEhValido) {
+    if (altura <= 0 || altura >= 3) {
+        console.log("Altura inválida!");
+        alturaEhValida = false;
+        tdAltura.textContent = "Altura inválida!";
+        paciente.classList.add("paciente-invalido")
+    }
 
-    var imc = peso / (altura * altura);
-    tdImc.textContent = imc;    
-} else {
-    tdImc.textContent = "Altura e/ou peso inválidos!"
+    if (alturaEhValida && pesoEhValido) {
+
+        var imc = peso / (altura * altura);
+        tdImc.textContent = imc.toFixed(2); // toFixed() diminui o numero de casas mostrado.
+    } else {
+        tdImc.textContent = "Altura e/ou peso inválidos!"
+    }
 }
