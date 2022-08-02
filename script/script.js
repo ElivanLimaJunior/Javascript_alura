@@ -1,6 +1,5 @@
 var pacientes = document.querySelectorAll(".paciente");
-
-console.log(pacientes)
+var titulo = document.querySelector(".titulo")
 
 for(var i = 0; i < pacientes.length; i++) {
     
@@ -18,14 +17,12 @@ for(var i = 0; i < pacientes.length; i++) {
     var pesoEhValido = true;
 
     if (peso <= 0 || peso > 1000) {
-        console.log("Peso inválido!");
         tdPeso.textContent = "Peso inválido!";
         pesoEhValido = false;
         paciente.classList.add("paciente-invalido")
     }
 
     if (altura <= 0 || altura >= 3) {
-        console.log("Altura inválida!");
         alturaEhValida = false;
         tdAltura.textContent = "Altura inválida!";
         paciente.classList.add("paciente-invalido")
@@ -39,3 +36,12 @@ for(var i = 0; i < pacientes.length; i++) {
         tdImc.textContent = "Altura e/ou peso inválidos!"
     }
 }
+
+// Eventos
+
+const botaoAdicionar = document.querySelector("#adicionar-paciente")
+botaoAdicionar.addEventListener("click", function(){
+    console.log("click")
+})
+
+console.log(botaoAdicionar)
