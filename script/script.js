@@ -40,8 +40,7 @@ for(var i = 0; i < pacientes.length; i++) {
 // Eventos
 
 const botaoAdicionar = document.querySelector("#adicionar-paciente")
-botaoAdicionar.addEventListener("click", function(){
+botaoAdicionar.addEventListener("click", function(event){
+    event.preventDefault() //Previnindo comportamento de enviar formulário para vermos o evento ed clicar.
     console.log("click")
 })
-
-console.log(botaoAdicionar)
