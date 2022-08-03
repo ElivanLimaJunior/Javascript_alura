@@ -1,0 +1,25 @@
+<!-- Qual código Javascript abaixo cria uma <div> como esta : -->
+
+    <div>
+        <h1 class="titulo"> Mirror Fashion </h1>
+        <p> Uma loja de roupa fantástica</p>
+    </div>
+
+    R:
+
+<script>
+        var div = document.createElement("div");
+    var h1 = document.createElement("h1");
+    h1.classList.add("titulo");
+    h1.textContent = "Mirror Fashion";
+
+    var p = document.createElement("p");
+    p.textContent = "Uma loja de roupa fantástica";
+
+    div.appendChild(h1);
+    div.appendChild(p);
+</script>
+
+<!-- 
+    A função responsável por criar elementos no Javascript é a createElement().Com ela passamos o nome da tag que queremos criar e ela nos retorna um objeto HTML que pode ser alterado com as propriedades do Javascript, como a .textContent e a .classList.
+ -->
