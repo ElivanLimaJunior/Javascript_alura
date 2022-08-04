@@ -5,39 +5,13 @@ botaoAdicionar.addEventListener("click", function(event){
     const form = document.querySelector("#form-adiciona")
 
     // Pegando valores do formulário
-
     const paciente = obtemPacienteDoFormulario(form)
-
-    // Criando elementos
-
-    const pacienteTR = document.createElement("tr")
-
-    const nomeTd = document.createElement("td")
-    const pesoTd = document.createElement("td")
-    const alturaTd = document.createElement("td")
-    const gorduraTd = document.createElement("td")
-    const imcTd = document.createElement("td")
-
-    // pegando conteúdo dos inputs
-
-    nomeTd.textContent = nome
-    pesoTd.textContent = peso
-    alturaTd.textContent = altura
-    gorduraTd.textContent = gordura
-    imcTd.textContent = calculaImc(peso,altura)
-    
-    // Colocando elementos como filho
-
-    pacienteTR.appendChild(nomeTd)
-    pacienteTR.appendChild(pesoTd)
-    pacienteTR.appendChild(alturaTd)
-    pacienteTR.appendChild(gorduraTd)
-    pacienteTR.appendChild(imcTd)
-    
+    // Criar a tr e td do paciente
+    let pacienteTr = montarTr(paciente)
     // Adiconando a tabela
-
     const tabela = document.querySelector("#tabela-pacientes")
-    tabela.appendChild(pacienteTR)
+    tabela.appendChild(pacienteTr)
+    
 })
 
 function obtemPacienteDoFormulario(form) {
@@ -50,4 +24,43 @@ function obtemPacienteDoFormulario(form) {
         imc: calculaImc(form.peso.value, form.altura.value)
     }
     return paciente
+}
+
+function montarTr(paciente) {
+     // Criando elementos
+     const pacienteTr = document.createElement("tr")
+     pacienteTr.classList.add("paciente")
+
+     // pegando conteúdo dos inputs
+     const nomeTd = montaTd(paciente.nome, "info-nome")
+     const pesoTd = montaTd(paciente.peso, "info-peso")
+     const alturaTd = montaTd(paciente.altura, "info-altura")
+     const gorduraTd = montaTd(paciente.gordura, "info-gordura")
+     const imcTd = montaTd(paciente.imc, "info-imc")
+    
+    // alterando conteúdo
+
+     nomeTd.textContent = paciente.nome
+     pesoTd.textContent = paciente.peso
+     alturaTd.textContent = paciente.altura
+     gorduraTd.textContent = paciente.gordura
+     imcTd.textContent = paciente.imc
+
+     // Colocando elementos como filho
+ 
+     pacienteTr.appendChild(nomeTd)
+     pacienteTr.appendChild(pesoTd)
+     pacienteTr.appendChild(alturaTd)
+     pacienteTr.appendChild(gorduraTd)
+     pacienteTr.appendChild(imcTd)
+
+    return pacienteTr //Não esquecer do return.
+}
+
+function montaTd(dado, classe){
+    const td = document.createElement("td")
+    td.textContent = dado
+    td.classList.add(classe)
+
+    return td
 }
