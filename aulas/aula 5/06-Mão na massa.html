@@ -1,0 +1,102 @@
+Organizando o código em vários arquivos.
+
+Começando deste ponto ?
+
+<!-- Começando deste ponto? Você pode fazer o download completo do projeto do capítulo anterior e continuar seus estudos a partir deste capítulo.
+
+download: https://s3.amazonaws.com/caelum-online-public/introducao-javascript/stages/introducao-javascript-capitulo-5.zip
+
+Neste capítulo vamos organizar nosso código para que ele fique mais fácil de manter e para que sigamos as boas práticas.
+
+1- Nosso arquivo principal.js estava começando a ficar muito grande, logo vamos separá-lo em arquivo Javascript individuais, aonde cada arquivo ficará responsável por uma funcionalidade do sistema. Primeiro, crie um novo arquivo chamado form.js, e importe-o no fim no seu HTML: -->
+
+<!-- // Restante do código HTML -->
+            </section>
+        </main>
+        <!-- Importação dos Javascripts AQUI -->
+        <script src="js/principal.js"></script>
+        <script src="js/form.js"></script>
+    </body>
+</html>
+
+<!-- 
+    2- Com o arquivo criado e importado, mova tudo que estiver relacionado com nosso formulário de adicionar paciente para lá. Basicamente tudo dentro do event listener do click do botão:
+ -->
+
+ <!-- //form.js -->
+
+<script>
+    
+    var botaoAdicionar = document.querySelector("#adicionar-paciente");
+    botaoAdicionar.addEventListener("click", function(event) {
+        // Todo o código da função.
+    });
+</script>
+
+<!-- 
+    3- Aproveite e renomeie o seu arquivo principal.js para um nome mais semântico, como calcula-imc.js , que diz melhor o que aquele código faz. Lembre de renomear a chamada da função no seu index.html.
+
+    4- Agora que já fizemos esta separação em arquivos, vamos começar a melhorar mais ainda o código. É a hora de exportarmos certas partes do código para funções, assim fica mais fácil reutilizá-las. Um bom exemplo é o código responsável por calcular um imc, que deve ser usado tanto na função cálcula IMC quanto quando criamos um novo paciente através do formulário. Crie a função calculaImc em seu arquivo calcula-imc.js como abaixo:
+ -->
+
+<script>
+    //calcula-imc.js
+    
+    // restante do código
+    
+    function calculaImc(peso, altura){
+        var imc = 0;
+        imc = peso / (altura * altura);
+        return imc.toFixed(2);
+    }
+</script>
+
+<!-- 5- Agora substitua o antigo cálculo na mão que fazíamos dentro do if por uma chamada a nossa recém criada função calculaImc, passando os parâmetros de acordo: -->
+
+<script>
+    //calcula-imc.js
+    // Restante do código
+        if (pesoEhValido && alturaEhValida) {
+            var imc = calculaImc(peso,altura);
+            imcTd.textContent = imc;
+        }
+    // Restante do código
+</script>
+
+<!-- 
+    6- Vamos também chamar a função calculaImc no nosso form.js, para que o IMC do paciente também seja calculado quando ele for inserido na tabela. Adicione junto dos outros <td's> para que o contéudo do tdImc seja o retorno da função calculaImc
+
+Lembre de criar o imcTd antes de fazer isso: var imcTd = document.createElement("td");
+ -->
+
+ <script>
+    //form.js
+    nomeTd.textContent = nome;
+    pesoTd.textContent = peso;
+    alturaTd.textContent = altura;
+    gorduraTd.textContent = gordura;
+    //Adicionar aqui:
+    imcTd.textContent = calculaImc(peso,altura);
+ </script>
+
+<!-- 
+7- E não vamos esquecer de colocar o tdImc também dentro do <tr> paciente:
+ -->
+
+<script>
+    //form.js
+    pacienteTr.appendChild(nomeTd);
+    pacienteTr.appendChild(pesoTd);
+    pacienteTr.appendChild(alturaTd);
+    pacienteTr.appendChild(gorduraTd);
+    //Adicionar aqui:
+    pacienteTr.appendChild(imcTd);
+</script>
+
+<!-- Agora quando o paciente for adicionado na tabela, seu IMC também será calculado e inserido automaticamente! -->
+
+
+
+<!-- Graças as boas práticas de reuso de código e de uma melhor organização não precisamos escrever o código responsável de calcular o IMC duas vezes, e ainda separamos nosso código Javascript em arquivos diferentes, para que fique mais fácil dar manutenção ao mesmo.
+
+ -->

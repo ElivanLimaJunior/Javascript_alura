@@ -1,0 +1,88 @@
+Temos o seguinte código:
+
+
+<button class="botao">Calcula</button>
+<input class="numero">
+<input class="tabuada">
+<span class="resultado"></span>
+
+<script>
+
+    var botao = document.querySelector('.botao');
+    var numero = document.querySelector('.numero');
+    var tabuada = document.querySelector('.tabuada');
+    var resultado = document.querySelector('.resultado');
+
+    botao.addEventListener('click', function() {
+
+        resultado.textContent = numero.value * tabuada.value;
+
+    });
+
+
+</script>
+
+<!-- 
+    Apesar de um código funcional ele pode ser melhor organizado para torná-lo mais legível e favorecer sua manutenção. Isso pode ser feito de diversas formas com auxílio de funções. Pense em como você organizaria diferente este código e compare o que pensou com a opinião do instrutor.
+ -->
+
+<!-- 
+    Ao invés de escrevermos toda vez document.querySelector podemos criar uma função que funciona como atalho para ele:
+ -->
+
+ <button class="botao">Calcula</button><input class="numero"><input class="tabuada"><span class="resultado"></span>
+<script>
+
+    function buscaElemento(seletor) {
+        return document.querySelector(seletor);
+    }
+
+    var botao = buscaElemento('.botao');
+    var numero = buscaElemento('.numero');
+    var tabuada = buscaElemento('.tabuada');
+    var resultado = buscaElemento('.resultado');
+
+    botao.addEventListener('click', function() {
+
+        resultado.textContent = numero.value * tabuada.value;
+
+    });
+
+
+</script>
+
+<!-- 
+    Para quem não conhece JavaScript, lendo o nome da função já faz ideia do que ela faz, no caso, ela busca um elemento.
+
+    Podemos deixar mais claro ainda o cálculo da tabuada isolando a lógica em uma função:
+ -->
+
+ <button class="botao">Calcula</button><input class="numero"><input class="tabuada"><span class="resultado"></span>
+ <script>
+ 
+     function buscaElemento(seletor) {
+         return document.querySelector(seletor);
+     }
+ 
+     function aplicaTabuada(numero, tabuada) {
+ 
+         return numero * tabuada;
+     }
+ 
+     var botao = buscaElemento('.botao');
+     var numero = buscaElemento('.numero');
+     var tabuada = buscaElemento('.tabuada');
+     var resultado = buscaElemento('.resultado');
+ 
+     botao.addEventListener('click', function() {
+ 
+         resultado.textContent = aplicaTabuada(numero.value, tabuada.value);
+ 
+     });
+ 
+ 
+ </script>
+
+<!-- 
+    Muitas vezes pode ser que criar funções aqui ou ali possa estar aumentando as linhas de código que resolvem nosso problema. No entanto, quando esse código extra visa melhorar a sua legibilidade e manutenção, ele é muito bem-vindo!
+ -->
