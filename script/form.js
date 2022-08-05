@@ -10,11 +10,11 @@ botaoAdicionar.addEventListener("click", function(event){
     let pacienteTr = montarTr(paciente)
     
     // mensagem de erro
-    const erro = validaPaciente(paciente)
+    const erros = validaPaciente(paciente)
+    console.log(erros)
     // Validando paciente
-    if(erro.length > 0){
-        const mensagemErro = document.querySelector("#mensagem-erro")
-        mensagemErro.textContent = erro
+    if(erros.length > 0){
+        exibeMensagensDeErro(erros)
         return // deixando esse return vazio, caso o paciente seja inválido ele irá automaticamente sair da função anonima sem adicionar a tabela.
     }
     // Adiconando a tabela
@@ -63,6 +63,10 @@ function montaTd(dado, classe){
 function validaPaciente(paciente) {
 
     const erros = []
+
+    if (paciente.nome.length == 0) {
+        erros.push("O nome não pode ser em branco")
+    }
     // o mesmo de if(validaPeso(paciente.peso) === true)
     if(validaPeso(paciente.peso) === false){
         erros.push("Peso é inválido!")
@@ -71,5 +75,25 @@ function validaPaciente(paciente) {
     if(validaAltura(paciente.altura) === false){
         erros.push("Altura é inválida!")
     }
+
+    if (paciente.gordura.length == 0) {
+        erros.push("A gordura não pode ser em branco")
+    }
+    if (paciente.peso.length == 0) {
+        erros.push("O peso não pode ser em branco")
+    }
+    if (paciente.altura.length == 0) {
+        erros.push("A altura não pode ser em branco")
+    }
     return erros;
+}
+
+function exibeMensagensDeErro(erros){
+    const ul = document.querySelector("#mensagens-erro")
+    // ForEach: para cada item dentro da array erros ele irá execultar uma função. Lemos: Para cada "erro" dentro do nosso array "erros" execulte a função.
+    erros.forEach(function(erro) { 
+        const li = document.createElement("li")
+        li.textContent = erro
+        ul.appendChild(li)
+    });
 }
