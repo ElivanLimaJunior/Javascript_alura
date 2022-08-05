@@ -22,7 +22,8 @@ botaoAdicionar.addEventListener("click", function(event){
     tabela.appendChild(pacienteTr)
     // Limpando campos preenchidos
     form.reset()
-    
+    const mensagensErro = document.querySelector("#mensagens-erro")
+    mensagensErro.innerHTML = ""
 })
 
 function obtemPacienteDoFormulario(form) {
@@ -90,6 +91,7 @@ function validaPaciente(paciente) {
 
 function exibeMensagensDeErro(erros){
     const ul = document.querySelector("#mensagens-erro")
+    ul.innerHTML = "" // limpar a ul a cada validação
     // ForEach: para cada item dentro da array erros ele irá execultar uma função. Lemos: Para cada "erro" dentro do nosso array "erros" execulte a função.
     erros.forEach(function(erro) { 
         const li = document.createElement("li")
