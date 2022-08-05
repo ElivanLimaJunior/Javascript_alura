@@ -8,6 +8,11 @@ botaoAdicionar.addEventListener("click", function(event){
     const paciente = obtemPacienteDoFormulario(form)
     // Criar a tr e td do paciente
     let pacienteTr = montarTr(paciente)
+    // Validando paciente
+    if(!validaPaciente(paciente)){
+        console.log("paciente inválido")
+        return // deixando esse return vazio, caso o paciente seja inválido ele irá automaticamente sair da função anonima sem adicionar a tabela.
+    }
     // Adiconando a tabela
     const tabela = document.querySelector("#tabela-pacientes")
     tabela.appendChild(pacienteTr)
@@ -49,4 +54,12 @@ function montaTd(dado, classe){
     td.classList.add(classe)
 
     return td
+}
+
+function validaPaciente(paciente) {
+    if(validaPeso(paciente.peso)){ // quando passamos apenas o parametro para o if, nós estamos analisando se ele é verdadeiro. Seria o mesmo de colocarmos: if(validaPeso(paciente.peso) === true)
+        return ""
+    }else{
+        return false
+    }
 }
