@@ -61,9 +61,15 @@ function montaTd(dado, classe){
 }
 
 function validaPaciente(paciente) {
-    if(validaPeso(paciente.peso)){ // quando passamos apenas o parametro para o if, nós estamos analisando se ele é verdadeiro. Seria o mesmo de colocarmos: if(validaPeso(paciente.peso) === true)
-        return ""
-    }else{
-        return "O peso é inválido"
+
+    const erros = []
+    // o mesmo de if(validaPeso(paciente.peso) === true)
+    if(validaPeso(paciente.peso) === false){
+        erros.push("Peso é inválido!")
+    } 
+
+    if(validaAltura(paciente.altura) === false){
+        erros.push("Altura é inválida!")
     }
+    return erros;
 }
