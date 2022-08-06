@@ -3,9 +3,8 @@ const pacientesAll = document.querySelectorAll(".paciente")
 const tabelap = document.querySelector("#tabela-pacientes")
 
 tabelap.addEventListener("dblclick", function(event){
-    var alvoEvento = event.target
-    var paiDoAlvo = alvoEvento.parentNode // ParentNode nós iremos acessar o pai do evento clicado. 
-    paiDoAlvo.remove()
+    // ParentNode nós iremos acessar o pai do evento clicado. 
+    event.target.parentNode.remove()
     
 })
 
