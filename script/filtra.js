@@ -1,9 +1,9 @@
 const campoFiltro = document.querySelector('#filtrar-tabela')
 
 campoFiltro.addEventListener("input", function(){
-    console.log(this.value)
     const pacientes = document.querySelectorAll(".paciente")
-
+    //Se o valor do campoFiltro for maior que 0
+    if (this.value.length > 0) {
     //Percorer todos os pacientes presentes
     for (let i = 0; i < pacientes.length; i++) {
         const paciente = pacientes[i];
@@ -17,5 +17,13 @@ campoFiltro.addEventListener("input", function(){
             paciente.classList.remove("invisivel")
         }
     }
+    }else{
+        for (let i = 0; i < pacientes.length; i++) {
+            const paciente = pacientes[i];
+            paciente.classList.remove("invisivel")
+            
+        }
+    }
+
         
 });
