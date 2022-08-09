@@ -1,0 +1,46 @@
+Rafinha criou o seguinte código baseado no código de Shakira com a diferença de que agora é possível adicionar novos elementos na lista dinamicamente:
+
+<ul class="lista">
+    <li>A</li>
+    <li>B</li>
+    <li>C</li>
+</ul>
+
+<input id="campo"><button id="botao">Adiciona</button>
+
+<script>
+
+    var lis = document.querySelectorAll('li');
+
+    for(var i = 0; i < lis.length; i++) {
+
+        lis[i].addEventListener('click', function() {
+
+            alert(this.textContent);
+        });
+    }
+
+    var botao = document.querySelector('#botao');
+    var input = document.querySelector('#campo');
+    var lista = document.querySelector('.lista');
+
+    botao.addEventListener('click',function() {
+
+        var li = document.createElement('li');
+        li.textContent = input.value;
+        lista.appendChild(li);
+    });
+</script>
+
+Marque as alternativas verdadeiras a respeito do código acima:
+
+R:
+
+O código funciona. No entanto, elementos adicionados dinamicamente não disparam o evento click, aquele que exibe o conteúdo do elemento através de um alert.
+
+O código que insere novos elementos na lista funciona corretamente, fazendo com que um novo elemento apareça na lista.
+
+
+Explicação:
+
+Uma das formas para que o evento click funcione tanto para os elementos já existentes quanto para os novos elementos é utilizar delegação de eventos.
