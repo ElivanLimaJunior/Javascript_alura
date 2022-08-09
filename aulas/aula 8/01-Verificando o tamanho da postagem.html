@@ -1,0 +1,30 @@
+Algumas redes sociais, como o Twitter, tem uma limitação da quantidade de caracteres das suas postagens. Para verificar isso, eles possuem um contador de caracteres, para limitar o tamanho dos textos postados:
+
+<body>
+    <textarea id="corpo-postagem" cols="40" rows="5"></textarea>
+    <p>Caracteres: <span id="numero-caracteres">0</span> caracteres.</p>
+    <script src="contador.js"></script>
+</body>
+
+<script>
+    // contador.js
+
+function atualizaCaracteres() {
+    var postagem = document.querySelector("#corpo-postagem").value;
+    var caracteres = postagem.length;
+
+    var contador = document.querySelector("#numero-caracteres");
+    contador.innerHTML = caracteres;
+}
+</script>
+
+A função atualizaCaracteres está correta, porém atualmente ela só pode ser chamada através do console. Qual código abaixo pode ser adicionado ao contador.js para que o número de caracteres seja atualizado conforme o usuário escreva a postagem?
+
+R:
+
+<script>
+    var campoPostagem = document.querySelector("#corpo-postagem");
+campoPostagem.addEventListener("input", atualizaCaracteres);
+</script>
+
+A função addEventListener() recebe dois parâmetros, o nome do evento a ser escutado e uma função com a ação que deve executar. A função já está feita, é a atualizaCaracteres e o evento é o input, para que o contador seja atualizado conforme o usuário escreve.
