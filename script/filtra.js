@@ -9,9 +9,10 @@ campoFiltro.addEventListener("input", function(){
         const paciente = pacientes[i];
         const tdNome = paciente.querySelector(".info-nome")
         const nome = tdNome.textContent
-
+        // Regex 
+        const expressao = new RegExp(this.value,"i")        
         //Verificação: Nome for diferente dentro do campoFiltro, ele irá adicionar a class invisivel nos pacientes. Caso tenha ele irá remover essa class.        
-        if(nome!= this.value){
+        if( !expressao.test(nome)){ // testando se nos paciente tem um pedaço do input digitado.
             paciente.classList.add("invisivel")
         }else{
             paciente.classList.remove("invisivel")
