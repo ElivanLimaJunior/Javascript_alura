@@ -26,6 +26,8 @@ botaoAdicionar.addEventListener("click", function(event){
     mensagensErro.innerHTML = ""
 })
 
+//  funções
+
 function obtemPacienteDoFormulario(form) {
 
     const paciente = {
