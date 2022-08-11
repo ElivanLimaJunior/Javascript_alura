@@ -8,12 +8,22 @@ adicionarPaciente.addEventListener("click", function(){
     xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes") 
 
     xhr.addEventListener("load", function(){
-        const resposta = xhr.responseText 
-        const pacientes = JSON.parse(resposta)
+        const erroAjax = document.querySelector("#erro-ajax")
 
-        pacientes.forEach(paciente => { // para cada paciente, iremos adicionar a tabela
-            adicionaPacienteNaTabela(paciente)
-        });
+        if (xhr.status == 200) { // Capturando erros. Se os status for possitivo de 200, ele irá passar normal. Caso não seja ele irá nos mostrar no console o "Error 404"
+            erroAjax.classList.add("invisivel")
+            const resposta = xhr.responseText 
+            const pacientes = JSON.parse(resposta)
+    
+            pacientes.forEach(paciente => { // para cada paciente, iremos adicionar a tabela
+                adicionaPacienteNaTabela(paciente)
+            });
+        }else{
+            console.log(xhr.status)
+            console.log(xhr.responseText)
+            erroAjax.classList.remove("invisivel")
+        }
+
 
     })
 
