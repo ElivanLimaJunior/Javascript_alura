@@ -1,20 +1,16 @@
 const botaoAdicionar = document.querySelector("#adicionar-paciente")
 botaoAdicionar.addEventListener("click", function(event){
-    event.preventDefault() //Previnindo comportamento de enviar formulário para vermos o evento ed clicar.
+    event.preventDefault()
 
     const form = document.querySelector("#form-adiciona")
 
-    // Pegando valores do formulário
     const paciente = obtemPacienteDoFormulario(form)
-    // mensagem de erro
     const erros = validaPaciente(paciente)
-    // Validando paciente
     if(erros.length > 0){
         exibeMensagensDeErro(erros)
-        return // deixando esse return vazio, caso o paciente seja inválido ele irá automaticamente sair da função anonima sem adicionar a tabela.
+        return
     }
     adicionaPacienteNaTabela(paciente)
-    // Limpando campos preenchidos
     form.reset()
     const mensagensErro = document.querySelector("#mensagens-erro")
     mensagensErro.innerHTML = ""
@@ -35,10 +31,8 @@ function obtemPacienteDoFormulario(form) {
 }
 
 function montarTr(paciente) {
-     // Criando elementos
      const pacienteTr = document.createElement("tr")
      pacienteTr.classList.add("paciente")    
-     // Colocando elementos como filho
  
      pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"))
      pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"))
@@ -64,7 +58,6 @@ function validaPaciente(paciente) {
     if (paciente.nome.length == 0) {
         erros.push("O nome não pode ser em branco")
     }
-    // o mesmo de if(validaPeso(paciente.peso) === true)
     if(validaPeso(paciente.peso) === false){
         erros.push("Peso é inválido!")
     } 
@@ -87,8 +80,7 @@ function validaPaciente(paciente) {
 
 function exibeMensagensDeErro(erros){
     const ul = document.querySelector("#mensagens-erro")
-    ul.innerHTML = "" // limpar a ul a cada validação
-    // ForEach: para cada item dentro da array erros ele irá execultar uma função. Lemos: Para cada "erro" dentro do nosso array "erros" execulte a função.
+    ul.innerHTML = "" 
     erros.forEach(function(erro) { 
         const li = document.createElement("li")
         li.textContent = erro
@@ -97,7 +89,7 @@ function exibeMensagensDeErro(erros){
 }
 
 function adicionaPacienteNaTabela(paciente){
-    let pacienteTr = montarTr(paciente) // pega o paciente e monta a sua TR
-    const tabela = document.querySelector("#tabela-pacientes") // pega a tabela
-    tabela.appendChild(pacienteTr) // adiciona paciente na tabela
+    let pacienteTr = montarTr(paciente) 
+    const tabela = document.querySelector("#tabela-pacientes")
+    tabela.appendChild(pacienteTr) 
 }

@@ -13,10 +13,10 @@ for(var i = 0; i < pacientes.length; i++) {
     var altura = tdAltura.textContent;
     var peso = tdPeso.textContent;
 
-    var pesoEhValido = validaPeso(peso) // true ou false
+    var pesoEhValido = validaPeso(peso)
     var alturaEhValida = validaAltura(altura)
 
-    if (!pesoEhValido) { // A exclamação inverte os valores de negativo para positivo.
+    if (!pesoEhValido) {
         tdPeso.textContent = "Peso inválido!";
         pesoEhValido = false;
         paciente.classList.add("paciente-invalido")
@@ -31,7 +31,7 @@ for(var i = 0; i < pacientes.length; i++) {
     if (alturaEhValida && pesoEhValido) {
 
         var imc = peso / (altura * altura);
-        tdImc.textContent = imc.toFixed(2); // toFixed() diminui o numero de casas mostrado.
+        tdImc.textContent = imc.toFixed(2);
     } else {
         tdImc.textContent = "Altura e/ou peso inválidos!"
     }

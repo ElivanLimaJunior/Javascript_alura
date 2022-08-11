@@ -10,12 +10,12 @@ adicionarPaciente.addEventListener("click", function(){
     xhr.addEventListener("load", function(){
         const erroAjax = document.querySelector("#erro-ajax")
 
-        if (xhr.status == 200) { // Capturando erros. Se os status for possitivo de 200, ele irá passar normal. Caso não seja ele irá nos mostrar no console o "Error 404"
+        if (xhr.status == 200) { // Verificar existência
             erroAjax.classList.add("invisivel")
             const resposta = xhr.responseText 
             const pacientes = JSON.parse(resposta)
     
-            pacientes.forEach(paciente => { // para cada paciente, iremos adicionar a tabela
+            pacientes.forEach(paciente => {
                 adicionaPacienteNaTabela(paciente)
             });
         }else{
