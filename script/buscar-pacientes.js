@@ -3,21 +3,18 @@ var adicionarPaciente = document.querySelector("#buscar-pacientes")
 adicionarPaciente.addEventListener("click", function(){
     console.log("222")
 
-    // 1
     var xhr = new XMLHttpRequest();
-    // 2
-    // 3
-    xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes") // 4
-    // 5
-    // 6
+
+    xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes") 
+
     xhr.addEventListener("load", function(){
-        // 7
-        const resposta = xhr.responseText // 8
-        const pacientes = JSON.parse(resposta) // passando para um Objeto
-        console.log(typeof pacientes) // 9
-        console.log(pacientes)
-        //10
-        // 11
+        const resposta = xhr.responseText 
+        const pacientes = JSON.parse(resposta)
+
+        pacientes.forEach(paciente => { // para cada paciente, iremos adicionar a tabela
+            adicionaPacienteNaTabela(paciente)
+        });
+
     })
 
     xhr.send()

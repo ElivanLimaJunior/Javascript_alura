@@ -6,20 +6,14 @@ botaoAdicionar.addEventListener("click", function(event){
 
     // Pegando valores do formulário
     const paciente = obtemPacienteDoFormulario(form)
-    // Criar a tr e td do paciente
-    let pacienteTr = montarTr(paciente)
-    
     // mensagem de erro
     const erros = validaPaciente(paciente)
-    console.log(erros)
     // Validando paciente
     if(erros.length > 0){
         exibeMensagensDeErro(erros)
         return // deixando esse return vazio, caso o paciente seja inválido ele irá automaticamente sair da função anonima sem adicionar a tabela.
     }
-    // Adiconando a tabela
-    const tabela = document.querySelector("#tabela-pacientes")
-    tabela.appendChild(pacienteTr)
+    adicionaPacienteNaTabela(paciente)
     // Limpando campos preenchidos
     form.reset()
     const mensagensErro = document.querySelector("#mensagens-erro")
@@ -100,4 +94,10 @@ function exibeMensagensDeErro(erros){
         li.textContent = erro
         ul.appendChild(li)
     });
+}
+
+function adicionaPacienteNaTabela(paciente){
+    let pacienteTr = montarTr(paciente) // pega o paciente e monta a sua TR
+    const tabela = document.querySelector("#tabela-pacientes") // pega a tabela
+    tabela.appendChild(pacienteTr) // adiciona paciente na tabela
 }
