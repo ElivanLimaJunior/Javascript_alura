@@ -14,7 +14,12 @@ adicionarPaciente.addEventListener("click", function(){
     // Para enviarmos usamos o evento send() no xhr. Antes nos precisamos acrescentar um "evento" no xhr para acessarmos os dados da resposta.
     xhr.addEventListener("load", function(){
         // o xhr tem uma propriedade chamada responseText, usamos ela junto ao console.log para que a resposta seja impressa no nosso console.
-        console.log(xhr.responseText) // agora podemos ver qeu já estamos trazendo os dados da reposta
+        const resposta = xhr.responseText // agora podemos ver qeu já estamos trazendo os dados da reposta.
+        console.log(typeof resposta) // O que nós estamos puxando é um objeto JSON. JSON é basicamente um formato leve de troca de informações/dados entre sistemas. Mas JSON significa JavaScript Object Notation.
+        //Ao checar seu tipo, podemos ver que se trata de string, porém ele está organizado como uma array do javascript. 
+
+        // Então precisamos usar o JSON.parser(resposta). Dessa forma ele irá ler o arquivo e irá converter o JSON em um objeto Javascript.
+
     })
 
     xhr.send()
